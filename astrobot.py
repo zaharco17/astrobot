@@ -1,7 +1,8 @@
-from Astro_Bot.settings import API_KEY
+
 import logging
 from telegram import update # для записи отчета о работе бота, импортитруем logging
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+import settings
 
 # записывать будет все сообщения уровня INFO и выше в файл bot.log
 logging.basicConfig(filename='bot.log', level=logging.INFO)
@@ -17,7 +18,7 @@ def greet_user(update, context):
 
 def main():
     # Создаем бота и передаем ему ключ для авторизации на серверах Telegram
-    mybot = Updater(API_KEY, use_context=True)
+    mybot = Updater(settings.API_KEY, use_context=True)
     dp = mybot.dispatcher # бот диспетчер
     # при нажатии "старт" вызовет функцию greet_user
     dp.add_handler(CommandHandler("start", greet_user))
